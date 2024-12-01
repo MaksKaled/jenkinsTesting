@@ -20,7 +20,7 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs
 
 # Устанавливаем Docker (это необходимо для Jenkins в контейнере иметь доступ к Docker хоста)
-RUN groupadd docker && usermod -aG docker jenkins
+RUN getent group docker || groupadd docker && usermod -aG docker jenkins
 
 # Открываем порты Jenkins
 EXPOSE 8080 50000
